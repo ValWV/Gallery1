@@ -33,7 +33,18 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
       size = linkEl.getAttribute('data-size').split('x');
 
       // create slide object
-      
+      if ($(linkEl).data('type') == 'video') {
+        item = {
+          html: $(linkEl).data('video')
+        };
+      } else {
+        item = {
+          src: linkEl.getAttribute('href'),
+          w: parseInt(size[0], 10),
+          h: parseInt(size[1], 10)
+        };
+      }
+
       if (figureEl.children.length > 1) {
         // <figcaption> content
         item.title = $(figureEl).find('.caption').html();
